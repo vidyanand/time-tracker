@@ -33,9 +33,10 @@ This project consists of a two pieces:
 2. If you want, visit the backend's API explorer [http://localhost:8080/_ah/api/explorer](http://localhost:8080/_ah/api/explorer)
 
 
-3. Run the frontend on a different port
+3. Run the frontend on a different port with a different storage path.
 
     ```
-    dev_appserver.py --port 8081 --admin_port 9001 frontend
+    dev_appserver.py --port 8081 --admin_port 8001 --storage_path /tmp/frontend frontend
     ```
 
+4. Visit the frontend at [http://localhost:8081](http://localhost:8081).

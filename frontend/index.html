@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Guestbook Example with Ferris</title>
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Our posts will be loaded into this container -->
+        <div id="postsContainer"></div>
+
+        <!-- This form will be used to add new posts -->
+        <form id="newPostForm">
+            <div><textarea name="content" class="form-control" rows="3"></textarea></div>
+            <div id="anonymousSubmit">
+                <input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook Anonymously">
+                - or -
+                <button type="button" class="btn btn-large btn-danger" id="googleSignInButton">Sign-in with Google</button>
+            </div>
+            <div id="authedSubmit" style="display: none;">
+                <input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook as Yourself">
+            </div>
+        </form>
+    </div>
+    
+    <!-- Load jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Application Logic -->
+    <script>
+    /* Web Client ID form the Google Developer Console */
+    var CLIENT_ID = '790401208055-hjlo5k0husfpopirt4e3c9n1so84nq22.apps.googleusercontent.com';
+    var SCOPES = ['email'];
+
+    /* This is called when the Google API Client is initialized. We'll load our endpoint here */
+    function on_gapi_loaded(){
+        /* First load the oauth library */
+        gapi.client.load('oauth2', 'v2', function(){
+            /* Try to do a background signin */
+            google_signin(true);
+        });
+
+        /* Then load the endpoint library */
+        var ROOT = 'http://localhost:8080/_ah/api';
+        gapi.client.load('ferris', 'v1', function() {
+            on_ferris_loaded();
+        }, ROOT);
+    }
+
+    /* This is called to signin the user using Google */
+    function google_signin(background){
+        gapi.auth.authorize({
+            client_id: CLIENT_ID,
+            scope: SCOPES,
+            immediate: background
+        }, function(result){
+            if(!result.error) on_user_authed(result);
+        });
+    }
+
+    /* Call the signin function when the signin button is clicked */
+    $('#googleSignInButton').on('click', function(e){
+        google_signin();
+    });
+
+    /* This is called when the user successfully logs in via Google */
+    function on_user_authed(){
+        /* Hide the anon button and show the authed button */
+        $('#anonymousSubmit').hide();
+        $('#authedSubmit').show();
+    }
+
+    /* This is called after the endpoint has successfully loaded. We'll load our guestbook posts here. */
+    function on_ferris_loaded() {
+        load_posts();
+    }
+
+    /* This calls the endpoints and inserts our list of posts into the page */
+    function load_posts(){
+        gapi.client.ferris.guestbook.list().execute(function(r){
+            r.items.forEach(function(item){
+                $('#postsContainer').append($(make_post_html(item)));
+            });
+        });
+    }
+
+    /* This creates the html template for a given post */
+    function make_post_html(item){
+        return '<div>' +
+            (!item.author ? 'An anonymous person wrote' : '<b>' + item.author.nickname + '</b> wrote:') +
+            '<blockquote>' + item.content + '</blockquote>' +
+            '</div>';
+    }
+
+    /* This handles form submission and calls our endpoint to insert a new post */
+    $('#newPostForm').on('submit', function(e){
+        // keep the form from submitting the old-fashioned way.
+        e.preventDefault();
+
+        // Get the value of the textarea.
+        var content = $('#newPostForm textarea[name=content]').val();
+
+        // Submit our new post to the endpoint.
+        gapi.client.ferris.guestbook.insert({content: content}).execute(function(r){
+            /* Insert the newly created post at the top of the list */
+            $('#postsContainer').prepend($(make_post_html(r)));
+        });
+
+        // Clear the textarea
+        $('#newPostForm textarea[name=content]').val('');
+    });
+
+
+    </script>
+
+    <!-- Load Google Javascript Library -->
+    <script src="https://apis.google.com/js/client.js?onload=on_gapi_loaded"></script>
+</body>
+</html>
