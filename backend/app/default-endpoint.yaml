@@ -1,0 +1,10 @@
+canonical_name: Ferris API
+name: ferris
+version: v1
+description: Ferris-based API
+auth_level: required
+scopes:
+- USERINFO
+allowed_client_ids:
+- API_EXPLORER_CLIENT_ID
+- 790401208055-hjlo5k0husfpopirt4e3c9n1so84nq22.apps.googleusercontent.com
