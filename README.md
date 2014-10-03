@@ -1,4 +1,41 @@
-Ferris-3-Example
-================
+## Ferris 3 Example
 
-A complete example of a Ferris 3 application
+A complete project using [Ferris 3](http://ferrisframework.org) on Google App Engine.
+
+This project consists of a two pieces:
+1. The *backend* powered by Ferris 3 and Google Cloud Endpoints.
+2. The *frontend* written in HTML and JS using the Google Javascript Client Library.
+
+## Getting started
+
+1. Clone this repository:
+
+    ```
+    git clone https://github.com/jonparrott/Ferris-3-Skeleton.git
+    cd Ferris-3-Example
+    ```
+
+2. Install dependencies for the backend using pip:
+
+    ```
+    cd backend
+    pip install --pre -t lib -r requirements.txt
+    ```
+
+## Running locally
+
+1. Run the backend locally from the command line. You will need the [App Engine Python SDK](https://developers.google.com/appengine/downloads):
+
+    ```
+    dev_appserver.py backend
+    ```
+
+2. If you want, visit the backend's API explorer [http://localhost:8080/_ah/api/explorer](http://localhost:8080/_ah/api/explorer)
+
+
+3. Run the frontend on a different port
+
+    ```
+    dev_appserver.py --port 8081 --admin_port 9001 frontend
+    ```
+
