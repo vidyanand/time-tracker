@@ -5,6 +5,7 @@ from app.guestbook import guestbook_service
 class TestGuestbook(EndpointsTest):
 
     def test_api(self):
+        self.login("test@example.com")
         self.add_service(guestbook_service.GuestbookService)
 
         resp = self.invoke('GuestbookService.insert', {
@@ -12,6 +13,7 @@ class TestGuestbook(EndpointsTest):
         })
 
         assert resp['content'] == 'hello!'
+        assert resp['author']['email'] == 'test@example.com'
 
         resp = self.invoke('GuestbookService.list')
 
