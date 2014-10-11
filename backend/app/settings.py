@@ -6,6 +6,7 @@ settings = {}
 # OAuth2 Configuration
 #
 
+settings['test'] = 'hello'
 
 # The Developer Console will give you a JSON file when creating a service account. You can either load it or paste it into here.
 
