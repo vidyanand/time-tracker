@@ -11,7 +11,7 @@ This project consists of a two pieces:
 1. Clone this repository:
 
     ```
-    git clone https://github.com/jonparrott/Ferris-3-Skeleton.git
+    git clone https://github.com/jonparrott/Ferris-3-Example.git
     cd Ferris-3-Example
     ```
 
