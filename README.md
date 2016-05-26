@@ -1,6 +1,4 @@
-## Ferris 3 Example
-
-A complete project using [Ferris 3](http://ferrisframework.org) on Google App Engine.
+A time-tracker app build on Google App Engine, build on example at https://github.com/jonparrott/Ferris-3-Example.git.
 
 This project consists of a two pieces:
 1. The *backend* powered by Ferris 3 and Google Cloud Endpoints.
@@ -11,8 +9,8 @@ This project consists of a two pieces:
 1. Clone this repository:
 
     ```
-    git clone https://github.com/jonparrott/Ferris-3-Example.git
-    cd Ferris-3-Example
+    git clone git@github.com:afzalSH/time-tracker.git
+    cd time-tracker
     ```
 
 2. Install dependencies for the backend using pip:
