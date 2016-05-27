@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+
+    <!-- Load jQuery -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Load Endpoint -->
+    <script src="static/js/load_endpoint.js"></script>
+
+    <!-- Google auth2 -->
+    <script src="static/js/google_sign_in.js"></script>
+
+    <!-- Page Logic -->
+    {% block scripts %}
+    {% endblock %}
+
+    <!-- Load Google Javascript Library -->
+    <script src="https://apis.google.com/js/client.js?onload=on_gapi_loaded"></script>
+</body>
+</html>

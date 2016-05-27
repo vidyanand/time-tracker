@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Guestbook Example with Ferris</title>
-    <!-- load bootstrap -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
-</head>
-<body>
+{% extends 'main.html' %}
 
+{% block title %}Time Tracker{% endblock %}
+
+{% block content %}
     <div class="container">
         <!-- Our posts will be loaded into this container -->
         <div id="postsContainer"></div>
@@ -26,16 +22,8 @@
             </div>
         </form>
     </div>
+{% endblock %}
 
-    <!-- Load jQuery -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-    <!-- Application Logic -->
-    <script src="static/js/load_endpoint.js"></script>
-    <script src="static/js/google_sign_in.js"></script>
+{% block scripts %}
     <script src="static/js/index.js"></script>
-
-    <!-- Load Google Javascript Library -->
-    <script src="https://apis.google.com/js/client.js?onload=on_gapi_loaded"></script>
-</body>
-</html>
+{% endblock %}
