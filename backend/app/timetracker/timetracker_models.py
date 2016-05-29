@@ -22,10 +22,10 @@ class Project(f3Model):
         project_id = str(pid)
 
         fields = [
-            gsearch.TextField(name='project_id', value=project_id),
             gsearch.TextField(name='project_name', value=name),
             gsearch.TextField(name='project_description', value=description)
         ]
+
         doc = gsearch.Document(doc_id=project_id, fields=fields)
         try:
             gsearch.Index('project_search').put(doc)
