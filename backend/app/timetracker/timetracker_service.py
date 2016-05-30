@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from google.appengine.api import search as gsearch
 from endpoints import get_current_user as get_current_guser
 
@@ -19,6 +21,7 @@ class ProjectService(f3.Service):
         project = f3.messages.deserialize(Project, request)
 
         project.creator = get_current_guser()
+        project.created = datetime.utcnow()
 
         project.put()
 
