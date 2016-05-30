@@ -21,14 +21,14 @@ class ProjectService(f3.Service):
         project = f3.messages.deserialize(Project, request)
 
         project.creator = get_current_guser()
-        project.created = datetime.utcnow()
+        project.created_at = datetime.utcnow()
 
         project.put()
 
         return f3.messages.serialize(ProjectMessage, project)
 
     paginated_list = f3.hvild.paginated_list(Project, query=Project.query()
-                                             .order(-Project.created))
+                                             .order(-Project.created_at))
     list = f3.hvild.list(Project)
 
     @f3.auto_method(returns=ProjectMessageCollection)

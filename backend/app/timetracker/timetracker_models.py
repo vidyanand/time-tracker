@@ -14,7 +14,7 @@ class Project(f3Model):
     creator = ndb.UserProperty(indexed=False)
     name = ndb.StringProperty(indexed=True)
     description = ndb.TextProperty(indexed=True)
-    created = ndb.DateTimeProperty()
+    created_at = ndb.DateTimeProperty()
     updated = ndb.DateTimeProperty(auto_now=True)
     time_markings = ndb.StructuredProperty(TimeMarking, repeated=True)
 
