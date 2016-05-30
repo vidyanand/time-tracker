@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
 
-    <!-- load website css -->
+    <!-- application css -->
     <link rel="stylesheet" href="static/css/main.css" type="text/css">
     {% block css %}
     {% endblock %}
 </head>
 
 <body>
+    {% include 'common/navbar.html' %}
+
+
     {% block content %}
     {% endblock %}
 
@@ -27,7 +30,8 @@
     <!-- Google auth2 -->
     <script src="static/js/google_sign_in.js"></script>
 
-    <!-- Page Logic -->
+    <!-- Application Logic -->
+    <script src="static/js/project_search.js"></script>
     {% block scripts %}
     {% endblock %}
 

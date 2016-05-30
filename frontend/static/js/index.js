@@ -15,7 +15,7 @@ function on_gauth_signout() {
     $('#anonymousSubmit').show();
 }
 
-var page = 1;
+var page;
 var toPageNav = {};
 function on_ferris_loaded() {
     load_projects();
@@ -35,6 +35,8 @@ function load_projects(pageToken, navigation){
             page++;
         } else if (navigation == 'backward') {
             page--;
+        } else {
+            page = 1;
         }
 
         var pageToken = r.nextPageToken
@@ -59,6 +61,11 @@ $('.projects-nav-button-forward').click( function () {
 
 $('.projects-nav-button-backward').click( function () {
     load_projects(toPageNav[page - 1], 'backward');
+});
+
+$('.project-header').click( function () {
+    load_projects();
+    $(".search-text").val("");
 });
 
 function make_project_html(item){

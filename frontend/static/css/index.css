@@ -4,7 +4,14 @@
 }
 
 .project-header {
+    display: inline-block;
     color: #006400;
+}
+
+.project-header:hover {
+    color: #ffff00;
+    cursor: pointer;
+    cursor: hand;
 }
 
 .projects-nav-button-forward, .projects-nav-button-backward {
