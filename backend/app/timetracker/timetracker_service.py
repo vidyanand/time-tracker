@@ -35,8 +35,9 @@ class ProjectService(f3.Service):
     def search(self, request, search_by=(str,)):
         search_results = gsearch.Index('project_search').search(search_by)
         p_ids = [int(doc.doc_id) for doc in search_results]
-        projects = t_ndb.get_by_ids(Project, p_ids)
+        projects = [project for project in t_ndb.get_by_ids(Project, p_ids)
+                    if project is not None]
 
-        if all(p is None for p in projects):
+        if not projects:
             raise f3.NotFoundException()
         return f3.messages.serialize_list(ProjectMessageCollection, projects)
