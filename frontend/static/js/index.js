@@ -55,6 +55,21 @@ function load_projects(pageToken, navigation){
     });
 }
 
+$('.create-project-button').click( function () {
+    var projectName = $(".project-name").val();
+    var projectDesc = $(".project-desc").val();
+
+    gapi.client.ferris.project.insert(
+        {'name': projectName,
+         'description': projectDesc}
+    ).execute(function(response){
+        $(".project-name").val('');
+        $(".project-desc").val('');
+
+        load_projects();
+    });
+});
+
 $('.projects-nav-button-forward').click( function () {
     load_projects(toPageNav[page + 1], 'forward');
 });

@@ -1,11 +1,26 @@
-.project-container {
-    margin-left: 10px;
-    margin-right: 10px;
+h1 {
+    color: #006400;
+}
+
+.project-creation {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-top: 10px;
+}
+
+.form-horizontal .control-label {
+    text-align:left;
+    display: inline-block;
+}
+
+.create-project-button {
+    margin-top: 40px;
 }
 
 .project-header {
     display: inline-block;
-    color: #006400;
 }
 
 .project-header:hover {
