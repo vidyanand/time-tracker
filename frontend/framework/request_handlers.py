@@ -14,7 +14,10 @@ class RequestHandlerConfigured(RequestHandler):
         loader=jinja2_FileSystemLoader(template_dir)
     )
 
-    def render(self, template, **kwargs):
+    def render(self, template, op_args):
+        '''
+        pass the template name as string and optional arguments as a dictionary
+        '''
         template_rendered = self.jinja_env.get_template(
-            template).render(kwargs)
+            template).render(op_args)
         self.response.out.write(template_rendered)

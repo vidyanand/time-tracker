@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block title %}Individual Project, Time Tracker{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/indvdual_project.css" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="project-name"></h1>
+
+    <div class="panel panel-default project-desc-panel">
+        <div class="panel-heading project-desc">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+ var itemID = {{ item_id|safe }};
+</script>
+<script src="/static/js/indvdual_project.js"></script>
+{% endblock %}

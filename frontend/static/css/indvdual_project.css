@@ -1,0 +1,11 @@
+.project-name {
+    text-transform: capitalize;
+}
+
+.project-desc-panel {
+    display: none;
+}
+
+.project-desc-heading {
+    color: #006400;
+}

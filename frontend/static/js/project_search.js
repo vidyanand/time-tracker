@@ -1,8 +1,6 @@
-$(".search-button").click( function () {
-    var searchText = $(".search-text").val();
-
+function searchProjects (searchBy) {
     gapi.client.ferris.project.search(
-        {'search_by': searchText}
+        {'search_by': searchBy}
     ).execute( function(response) {
         $('.project-individual-container').remove();
 
@@ -13,4 +11,18 @@ $(".search-button").click( function () {
         $('.projects-nav-button-forward').hide();
         $('.projects-nav-button-backward').hide();
     });
+    page = 1;
+}
+
+
+$(".search-button").click( function () {
+    var searchText = $(".search-text").val();
+
+    if ($(this).hasClass('navigate-to-home')) {
+        window.location.href = "/?search_str=" + searchText;
+    }
+
+    searchProjects(searchText);
+
+    $(".search-text").val('');
 });

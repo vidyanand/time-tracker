@@ -18,7 +18,11 @@ function on_gauth_signout() {
 var page;
 var toPageNav = {};
 function on_ferris_loaded() {
-    load_projects();
+    if (typeof searchStr == 'undefined') {
+        load_projects();
+    } else {
+        searchProjects(searchStr);
+    }
 }
 
 function load_projects(pageToken, navigation){
@@ -56,15 +60,15 @@ function load_projects(pageToken, navigation){
 }
 
 $('.create-project-button').click( function () {
-    var projectName = $(".project-name").val();
-    var projectDesc = $(".project-desc").val();
+    var projectName = $(".project-create-name").val();
+    var projectDesc = $(".project-create-desc").val();
 
     gapi.client.ferris.project.insert(
         {'name': projectName,
          'description': projectDesc}
     ).execute(function(response){
-        $(".project-name").val('');
-        $(".project-desc").val('');
+        $(".project-create-name").val('');
+        $(".project-create-desc").val('');
 
         load_projects();
     });
@@ -84,9 +88,11 @@ $('.project-header').click( function () {
 });
 
 function make_project_html(item){
-    return '<div class="panel panel-default project-individual-container"><div class="panel-heading project-name">' +
+    return '<div class="panel panel-default project-individual-container"><div class="panel-heading project-name"><a href="/projects/' +
+        item.id +
+        '">' +
         item.name +
-        '</div><div class="panel-body project-description">' +
+        '</a></div><div class="panel-body project-description">' +
         item.description +
         '</div></div>'
 }

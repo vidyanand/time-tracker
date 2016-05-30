@@ -28,6 +28,8 @@ class ProjectService(f3.Service):
         return f3.messages.serialize(ProjectMessage, project)
     update = f3.hvild.update(Project)
 
+    get = f3.hvild.get(Project)
+
     paginated_list = f3.hvild.paginated_list(Project, query=Project.query()
                                              .order(-Project.created_at),
                                              limit=10)

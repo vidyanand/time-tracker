@@ -3,7 +3,7 @@
 {% block title %}Time Tracker{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="static/css/index.css" type="text/css">
+<link rel="stylesheet" href="/static/css/index.css" type="text/css">
 {% endblock %}
 
 {% block content %}
@@ -16,14 +16,14 @@
         <div class="form-group row">
 	    <label class="col-md-1 control-label" for="name">Name</label>
 	    <div class="col-md-7">
-	        <input type="text" class="form-control project-name" id="name" placeholder="Project Name">
+	        <input type="text" class="form-control project-create-name" id="name" placeholder="Project Name">
 	    </div>
         </div>
 
         <div class="form-group row">
 	    <label class="col-md-1 control-label" for="description">Description</label>
 	    <div class="col-md-7">
-                <textarea class="form-control project-desc" id="description" placeholder="Project Description" rows="3" cols="50">
+                <textarea class="form-control project-create-desc" id="description" placeholder="Project Description" rows="3" cols="50">
                 </textarea>
 	    </div>
             <div class="col-md-4">
@@ -44,5 +44,10 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="static/js/index.js"></script>
+<script>
+ {% if search_str is defined %}
+ var searchStr = {{ search_str | safe}};
+ {% endif %}
+</script>
+<script src="/static/js/index.js"></script>
 {% endblock %}

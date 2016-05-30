@@ -1,5 +1,5 @@
-h1 {
-    color: #006400;
+a:hover {
+    text-decoration: none;
 }
 
 .project-creation {
@@ -37,6 +37,6 @@ h1 {
     margin-left: 10px;
 }
 
-.project-name, .project-description {
+.project-name {
     text-transform: capitalize;
 }
