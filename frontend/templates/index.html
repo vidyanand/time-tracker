@@ -2,28 +2,44 @@
 
 {% block title %}Time Tracker{% endblock %}
 
-{% block content %}
-    <div class="container">
-        <!-- Our posts will be loaded into this container -->
-        <div id="postsContainer"></div>
+{% block css %}
+<link rel="stylesheet" href="static/css/index.css" type="text/css">
+{% endblock %}
 
-        <!-- This form will be used to add new posts -->
-        <form id="newPostForm">
-            <div><textarea name="content" class="form-control" rows="3"></textarea></div>
-            <div id="anonymousSubmit">
-                <input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook Anonymously">
-                - or -
-                <button type="button" class="btn btn-large btn-danger" id="googleSignInButton">Sign-in with Google</button>
-            </div>
-            <div id="authedSubmit" style="display: none;">
-                <input type="submit" class="btn btn-large btn-primary" value="Sign Guestbook as Yourself">
-                - or -
-                <button type="button" class="btn btn-large btn-danger" id="googleSignOutButton">Sign-out</button>
-            </div>
-        </form>
+{% block content %}
+
+<div class="container project-container">
+    <!-- Our posts will be loaded into this container -->
+    <div id="projectsContainer">
+        <h1 class="project-header">Projects</h1>
+        <button type="button" class="btn btn-primary pull-right projects-nav-button-forward">Next</button>
+        <button type="button" class="btn btn-primary projects-nav-button-backward">Previous</button>
     </div>
+</div>
+
+{#
+<form class="form-horizontal">
+    <div class="form-group">
+	<label class="col-md-4 control-label" for="name">Name</label>
+	<div class="col-md-6">
+	    <input type="text" class="form-control" id="name" name="name" placeholder="Project Name">
+	</div>
+    </div>
+
+    <div class="form-group">
+	<label class="col-md-4 control-label" for="description">Description</label>
+	<div class="col-md-6">
+            <textarea class="form-control" id="description" name="description" placeholder="Project Description" rows="4" cols="50">
+            </textarea>
+	</div>
+    </div>
+</form>
+#}
+
 {% endblock %}
 
 {% block scripts %}
-    <script src="static/js/index.js"></script>
+
+<script src="static/js/index.js"></script>
+
 {% endblock %}

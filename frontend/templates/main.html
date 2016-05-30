@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <!-- load bootstrap -->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" type="text/css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css">
+
+    <!-- load website css -->
+    <link rel="stylesheet" href="static/css/main.css" type="text/css">
+    {% block css %}
+    {% endblock %}
 </head>
+
 <body>
     {% block content %}
     {% endblock %}
 
-    <!-- Load jQuery -->
+    <!-- Load jQuery, bootstrap js -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script scr="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
     <!-- Load Endpoint -->
     <script src="static/js/load_endpoint.js"></script>
@@ -25,4 +34,5 @@
     <!-- Load Google Javascript Library -->
     <script src="https://apis.google.com/js/client.js?onload=on_gapi_loaded"></script>
 </body>
+
 </html>

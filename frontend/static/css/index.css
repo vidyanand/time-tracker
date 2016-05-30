@@ -1,0 +1,20 @@
+.project-container {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.project-header {
+    color: #006400;
+}
+
+.projects-nav-button-forward, .projects-nav-button-backward {
+    display: none;
+}
+
+.project-individual-container {
+    margin-left: 10px;
+}
+
+.project-name, .project-description {
+    text-transform: capitalize;
+}

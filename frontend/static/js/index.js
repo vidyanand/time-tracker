@@ -1,4 +1,3 @@
-/* Call the signin function when the signin button is clicked */
 $('#googleSignInButton').on('click', function(e){
     google_signin();
 });
@@ -6,9 +5,7 @@ $('#googleSignOutButton').on('click', function(e){
     google_signout();
 });
 
-/* This is called when the user successfully logs in via Google */
 function on_user_authed() {
-    /* Hide the anon button and show the authed button */
     $('#anonymousSubmit').hide();
     $('#authedSubmit').show();
 }
@@ -18,26 +15,58 @@ function on_gauth_signout() {
     $('#anonymousSubmit').show();
 }
 
-/* This is called after the endpoint has successfully loaded. We'll load our guestbook posts here. */
+var page = 1;
+var toPageNav = {};
 function on_ferris_loaded() {
-    load_posts();
+    load_projects();
 }
 
-/* This calls the endpoints and inserts our list of posts into the page */
-function load_posts(){
-    gapi.client.ferris.guestbook.list().execute(function(r){
+function load_projects(pageToken, navigation){
+    gapi.client.ferris.project.paginated_list(
+        {'pageToken': pageToken}
+    ).execute(function(r){
+        $('.project-individual-container').remove();
+
         r.items.forEach(function(item){
-            $('#postsContainer').append($(make_post_html(item)));
+            $('.projects-nav-button-forward').before($(make_project_html(item)));
         });
+
+        if (navigation == 'forward') {
+            page++;
+        } else if (navigation == 'backward') {
+            page--;
+        }
+
+        var pageToken = r.nextPageToken
+        if (pageToken !== undefined) {
+            toPageNav[page + 1] = pageToken;
+            $('.projects-nav-button-forward').show();
+        } else {
+            $('.projects-nav-button-forward').hide();
+        }
+
+        if (page > 1) {
+            $('.projects-nav-button-backward').show();
+        } else {
+            $('.projects-nav-button-backward').hide();
+        }
     });
 }
 
-/* This creates the html template for a given post */
-function make_post_html(item){
-    return '<div>' +
-        (!item.author ? 'An anonymous person wrote' : '<b>' + item.author.nickname + '</b> wrote:') +
-        '<blockquote>' + item.content + '</blockquote>' +
-        '</div>';
+$('.projects-nav-button-forward').click( function () {
+    load_projects(toPageNav[page + 1], 'forward');
+});
+
+$('.projects-nav-button-backward').click( function () {
+    load_projects(toPageNav[page - 1], 'backward');
+});
+
+function make_project_html(item){
+    return '<div class="panel panel-default project-individual-container"><div class="panel-heading project-name">' +
+        item.name +
+        '</div><div class="panel-body project-description">' +
+        item.description +
+        '</div></div>'
 }
 
 /* This handles form submission and calls our endpoint to insert a new post */

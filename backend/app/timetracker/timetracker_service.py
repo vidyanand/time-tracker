@@ -29,7 +29,8 @@ class ProjectService(f3.Service):
     update = f3.hvild.update(Project)
 
     paginated_list = f3.hvild.paginated_list(Project, query=Project.query()
-                                             .order(-Project.created_at))
+                                             .order(-Project.created_at),
+                                             limit=10)
     list = f3.hvild.list(Project)
 
     @f3.auto_method(returns=ProjectMessageCollection)
