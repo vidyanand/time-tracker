@@ -7,7 +7,6 @@ function on_gapi_loaded(){
     });
 
     /* Then load the endpoint library */
-    var ROOT = 'http://localhost:8080/_ah/api';
     gapi.client.load('ferris', 'v1', function() {
         on_ferris_loaded();
     }, ROOT);
