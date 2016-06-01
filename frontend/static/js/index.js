@@ -5,9 +5,8 @@ $('.google-login-button').on('click', function(e){
 //     google_signout();
 // });
 
-function on_user_authed() {
-    $('#anonymousSubmit').hide();
-    $('#authedSubmit').show();
+function on_user_authed(result) {
+    $('.google-login-button').hide();
 }
 
 function on_gauth_signout() {
