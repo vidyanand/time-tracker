@@ -1,9 +1,9 @@
-$('#googleSignInButton').on('click', function(e){
+$('.google-login-button').on('click', function(e){
     google_signin();
 });
-$('#googleSignOutButton').on('click', function(e){
-    google_signout();
-});
+// $('#googleSignOutButton').on('click', function(e){
+//     google_signout();
+// });
 
 function on_user_authed() {
     $('#anonymousSubmit').hide();

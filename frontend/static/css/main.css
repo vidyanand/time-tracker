@@ -6,3 +6,11 @@ body {
 h1 {
     color: #006400;
 }
+
+.google-login-button {
+    background: none!important;
+    border: none;
+    font:  inherit;
+    cursor: pointer;
+    margin-top: 10px;
+}

@@ -15,7 +15,7 @@ function google_signin(background){
     });
 }
 
-function google_signout(){
-    gapi.auth.signOut();
-    on_gauth_signout();
-}
+// function google_signout(){
+//     gapi.auth.signOut();
+//     on_gauth_signout();
+// }
