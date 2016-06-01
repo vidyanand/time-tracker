@@ -2,8 +2,23 @@
     text-transform: capitalize;
 }
 
-.project-desc-panel {
+.delete-project {
+    color: #FF0000;
     display: none;
+}
+
+.delete-alert, .invalid-project-message, .delete-project-success-message, .project-desc-panel  {
+    display: none;
+}
+
+.delete-project-confirm {
+    color: #FF0000;
+}
+
+.delete-project:hover, .delete-project-confirm:hover, .back-home-after-delete:hover {
+    color: #ffff00;
+    cursor: pointer;
+    cursor: hand;
 }
 
 .project-desc-heading {

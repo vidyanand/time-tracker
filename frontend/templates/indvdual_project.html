@@ -7,13 +7,16 @@
 {% endblock %}
 
 {% block content %}
-<div class="container">
+{% include 'common/delete_project.html' %}
+{% include 'common/invalid_project.html' %}
+{% include 'common/delete_project_success.html' %}
+<div class="container project-details">
     <h1 class="project-name"></h1>
-
     <div class="panel panel-default project-desc-panel">
         <div class="panel-heading project-desc">
         </div>
     </div>
+    <h2 class="pull-right delete-project"><i class="fa fa-remove"></i>  Delete</h2>
 </div>
 {% endblock %}
 
