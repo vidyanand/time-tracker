@@ -16,11 +16,19 @@ function populate_page(project) {
 }
 
 function load_project(itemID) {
-    gapi.client.ferris.project.get(
-        {'itemId': itemID}
-    ).execute( function (response) {
-        populate_page(response);
-    });
+    if (typeof gapi.client.ferris !== 'undefined') {
+        gapi.client.ferris.project.get(
+            {'itemId': itemID}
+        ).execute( function (response) {
+            if (!response.error) {
+                populate_page(response);
+            } else {
+                console.log(response.error);
+            }
+        });
+    } else {
+        $(".not-signed-in-alert").show();
+    }
 }
 
 $(document).ready( function () {

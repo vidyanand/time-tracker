@@ -15,7 +15,7 @@
 
 <body>
     {% include 'common/navbar.html' %}
-
+    {% include 'common/not_signed_in_alert.html' %}
 
     {% block content %}
     {% endblock %}
@@ -30,11 +30,8 @@
     </script>
     <script src="/static/js/load_endpoint.js"></script>
 
-    <!-- Google auth2 -->
-    <script src="/static/js/google_sign_in.js"></script>
-
     <!-- Application Logic -->
-    <script src="/static/js/project_search.js"></script>
+    <script src="/static/js/main.js"></script>
     {% block scripts %}
     {% endblock %}
 

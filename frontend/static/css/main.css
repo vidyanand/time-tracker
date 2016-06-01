@@ -14,3 +14,7 @@ h1 {
     cursor: pointer;
     margin-top: 10px;
 }
+
+.not-signed-in-alert {
+    display: none;
+}

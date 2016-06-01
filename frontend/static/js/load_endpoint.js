@@ -1,13 +1,27 @@
-/* This is called when the Google API Client is initialized. We'll load our endpoint here */
+var  CLIENT_ID = '858743601957-ahhhp3ip39c6fj1jucu5t1ga3k7e7s4d.apps.googleusercontent.com';
+var SCOPES = ['email'];
+
+function google_signin(background){
+    gapi.auth.authorize({
+        client_id: CLIENT_ID,
+        scope: SCOPES,
+        immediate: background
+    }, function(result){
+        if(!result.error) {
+            $('.google-login-button').hide();
+            gapi.client.load('ferris', 'v1', function() {
+                on_ferris_loaded();
+            }, ROOT);
+        }
+        else {
+            $(".not-signed-in-alert").show();
+        }
+    });
+}
+
 function on_gapi_loaded(){
-    /* First load the oauth library */
     gapi.client.load('oauth2', 'v2', function(){
-        /* Try to do a background signin */
         google_signin(true);
     });
-
-    /* Then load the endpoint library */
-    gapi.client.load('ferris', 'v1', function() {
-        on_ferris_loaded();
-    }, ROOT);
 }
+
