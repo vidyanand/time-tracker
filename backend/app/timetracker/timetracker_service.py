@@ -35,6 +35,8 @@ class ProjectService(f3.Service):
                                              limit=10)
     list = f3.hvild.list(Project)
 
+    delete = f3.hvild.delete(Project)
+
     @f3.auto_method(returns=ProjectMessageCollection)
     def search(self, request, search_by=(str,)):
         search_results = gsearch.Index('project_search').search(search_by)
