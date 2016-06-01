@@ -4,7 +4,7 @@ from json import dumps as json_dumps
 from framework.request_handlers import RequestHandlerConfigured
 
 
-ROOT = 'https://localhost:8080' \
+ROOT = 'http://localhost:8080' \
        if os_environ.get('SERVER_SOFTWARE', '').startswith('Development') \
           else 'https://tarams-time-tracker-backend.appspot.com'
 op_args = {'ROOT': json_dumps('{0}/_ah/api'.format(ROOT))}
