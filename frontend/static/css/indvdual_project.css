@@ -7,7 +7,7 @@
     display: none;
 }
 
-.delete-alert, .invalid-project-message, .delete-project-success-message, .project-desc-panel  {
+.delete-alert, .invalid-project-message, .delete-project-success-message, .project-desc-panel, .update-project  {
     display: none;
 }
 

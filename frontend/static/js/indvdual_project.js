@@ -9,10 +9,20 @@ function on_gauth_signout() {
 }
 
 function populate_page(project) {
-    $('.project-name').html("Project: " + project.name);
+    var projectName = project.name;
+    var projectDesc = project.description;
+
+    $('.project-desc').empty();
+
+    $('.project-name').html("Project: " + projectName);
     $('.project-desc').append("<p class='project-desc-heading'>Description:</p>");
-    $('.project-desc').append(project.description);
+    $('.project-desc').append(projectDesc);
     $('.project-desc-panel').show();
+
+    $('.project-update-name').attr("placeholder", projectName);
+    $('.project-update-desc').attr("placeholder", projectDesc);
+    $('.update-project').show();
+
     $('.delete-project').show();
 }
 
@@ -54,6 +64,31 @@ function deleteProject(projectID) {
     }
 }
 
+function updateProject() {
+    var projectName = $(".project-update-name").val();
+    var projectDesc = $(".project-update-desc").val();
+
+    if (typeof gapi.client.ferris !== 'undefined') {
+        gapi.client.ferris.project.update(
+            {'itemId': itemID,
+             'name': projectName,
+             'description': projectDesc}
+        ).execute(function(response){
+            if (!response.error) {
+                load_project(itemID);
+                $(".not-signed-in-alert").hide();
+            } else {
+                console.log(response.error);
+            }
+        });
+    } else {
+        $(".not-signed-in-alert").show();
+    }
+
+    $(".project-update-name").val('');
+    $(".project-update-desc").val('');
+}
+
 $(document).ready( function () {
     $('.search-button').addClass('navigate-to-home');
 
@@ -71,5 +106,9 @@ $(document).ready( function () {
 
     $('.back-home-after-delete').click( function () {
         window.location.href = '/';
+    });
+
+    $('.update-project-button').click( function () {
+        updateProject();
     });
 });
